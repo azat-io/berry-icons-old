@@ -1,0 +1,90 @@
+{
+  "name": "berry-icons",
+  "displayName": "Berry Icons",
+  "description": "Berry icon theme for Visual Studio Code",
+  "version": "0.1.0",
+  "repository": "azat-io/berry-icons",
+  "author": "Azat S. <to@azat.io>",
+  "publisher": "azat-io",
+  "license": "MIT",
+  "keywords": [
+    "icons",
+    "theme",
+    "gruvbox",
+    "icon-theme",
+    "customization"
+  ],
+  "engines": {
+    "node": ">=19",
+    "vscode": "^1.75.0"
+  },
+  "galleryBanner": {
+    "theme": "dark",
+    "color": "#1D2021"
+  },
+  "icon": "assets/logo.png",
+  "categories": [
+    "Themes",
+    "Other"
+  ],
+  "contributes": {
+    "configuration": {
+      "title": "Berry Icons",
+      "properties": {
+        "berryIcons.theme": {
+          "default": "default",
+          "enum": [
+            "default",
+            "github",
+            "gruvbox"
+          ],
+          "enumItemLabels": [
+            "Default",
+            "GitHub",
+            "Gruvbox"
+          ]
+        }
+      }
+    }
+  },
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "dist/index.js",
+  "sideEffects": false,
+  "scripts": {
+    "build": "vite build",
+    "release": "pnpm release:check && pnpm release:assets && pnpm release:version && pnpm release:publish",
+    "release:assets": "tsm ./scripts/generate-preview.ts",
+    "release:changelog": "standard-version --infile changelog.md --same-file --skip.bump --skip.commit --skip.tag",
+    "release:check": "pnpm test && pnpm build",
+    "release:publish": "vsce package --no-dependencies && vsce publish --no-dependencies",
+    "release:version": "bumpp package.json --execute=\"pnpm release:changelog && git add changelog.md assets/*.png\" --commit \"build: publish v%s\" --tag --all",
+    "lint": "eslint .",
+    "test:types": "tsc --noEmit --pretty",
+    "test": "pnpm test:types && pnpm lint"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^17.4.2",
+    "@commitlint/config-conventional": "^17.4.2",
+    "@logux/eslint-config": "^48.0.0",
+    "@types/node": "^18.13.0",
+    "@types/vscode": "^1.75.0",
+    "@typescript-eslint/eslint-plugin": "^5.51.0",
+    "@typescript-eslint/parser": "^5.51.0",
+    "bumpp": "^8.2.1",
+    "eslint": "^8.34.0",
+    "eslint-config-standard": "^17.0.0",
+    "eslint-plugin-import": "^2.27.5",
+    "eslint-plugin-n": "^15.6.1",
+    "eslint-plugin-prefer-let": "^3.0.1",
+    "eslint-plugin-promise": "^6.1.1",
+    "puppeteer": "^19.6.3",
+    "simple-git-hooks": "^2.8.1",
+    "standard-version": "^9.5.0",
+    "tsm": "^2.3.0",
+    "typescript": "^4.9.5",
+    "vite": "^4.1.1",
+    "vitest": "^0.28.4"
+  }
+}

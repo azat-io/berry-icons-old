@@ -1,0 +1,14 @@
+# Node.js
+node_modules/
+.pnpm-debug.log*
+
+# Build
+dist/
+*.vsix
+
+# Environment
+.env
+
+# Misc
+coverage/
+.DS_Store
