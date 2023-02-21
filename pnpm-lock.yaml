@@ -10,6 +10,7 @@ specifiers:
   '@typescript-eslint/parser': ^5.53.0
   '@vitest/coverage-c8': ^0.28.5
   bumpp: ^8.2.1
+  culori: ^2.0.4
   eslint: ^8.34.0
   eslint-config-standard: ^17.0.0
   eslint-plugin-import: ^2.27.5
@@ -23,6 +24,9 @@ specifiers:
   typescript: ^4.9.5
   vite: ^4.1.3
   vitest: ^0.28.5
+
+dependencies:
+  culori: 2.0.4
 
 devDependencies:
   '@commitlint/cli': 17.4.4
@@ -1448,6 +1452,11 @@ packages:
       shebang-command: 2.0.0
       which: 2.0.2
     dev: true
+
+  /culori/2.0.4:
+    resolution: {integrity: sha512-wYQcZOH8auJWxpGOyXxcftYOzsIlfphlohE9/Obo3nNoylyVYduzX+BZgsZXK/OPPAK/4cc5MKiCrIUITkF5ug==}
+    engines: {node: ^12.20.0 || ^14.13.1 || >=16.0.0}
+    dev: false
 
   /dargs/7.0.0:
     resolution: {integrity: sha512-2iy1EkLdlBzQGvbweYRFxmFath8+K7+AKB0TlhHWkNuH+TmovaMH/Wp7V7R4u7f4SnX3OgLsU9t1NI9ioDnUpg==}

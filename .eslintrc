@@ -26,6 +26,7 @@
         "varsIgnorePattern": "^_",
         "caughtErrorsIgnorePattern": "^_"
       }
-    ]
+    ],
+    "@typescript-eslint/no-confusing-void-expression": "off"
   }
 }

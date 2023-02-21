@@ -63,7 +63,10 @@
     "lint": "eslint .",
     "test:unit": "vitest run --coverage",
     "test:types": "tsc --noEmit --pretty",
-    "test": "pnpm test:types && pnpm lint"
+    "test": "pnpm test:types && pnpm lint && pnpm test:unit"
+  },
+  "dependencies": {
+    "culori": "^2.0.4"
   },
   "devDependencies": {
     "@commitlint/cli": "^17.4.4",
