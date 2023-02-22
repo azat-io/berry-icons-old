@@ -8,14 +8,12 @@ let __dirname = getDirname(import.meta.url)
 export let createIcon = async (
   {
     name,
-    type,
   }: {
     name: string
-    type: string
   },
   data: string,
 ): Promise<void> => {
-  let distDir = path.join(__dirname, '/../dist/icons', type)
+  let distDir = path.join(__dirname, '/../dist/icons')
 
   await distDir.split(path.sep).reduce(async (accumulatorP, dir) => {
     let accumulator = await accumulatorP
@@ -28,8 +26,5 @@ export let createIcon = async (
     return currentDir
   }, Promise.resolve(''))
 
-  await fs.writeFile(
-    path.join(__dirname, '/../dist/icons', type, `${name}.svg`),
-    data,
-  )
+  await fs.writeFile(path.join(distDir, `${name}.svg`), data)
 }
