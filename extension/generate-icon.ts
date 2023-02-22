@@ -1,3 +1,5 @@
+import svgo from 'svgo'
+
 import { updateColors } from './update-colors.js'
 import { createIcon } from './create-icon.js'
 import { gruvbox } from '../theme/gruvbox.js'
@@ -9,7 +11,8 @@ export let generateIcon = async (): Promise<void> => {
     type: 'base',
   }
   let file = await readIcon(config)
-  let newFile = updateColors(file, gruvbox)
+  let optimizedFile = svgo.optimize(file).data
+  let newFile = updateColors(optimizedFile, gruvbox)
   await createIcon(config, newFile)
 }
 

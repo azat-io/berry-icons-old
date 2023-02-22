@@ -66,7 +66,8 @@
     "test": "pnpm test:types && pnpm lint && pnpm test:unit"
   },
   "dependencies": {
-    "culori": "^2.0.4"
+    "culori": "^2.0.4",
+    "svgo": "^3.0.2"
   },
   "devDependencies": {
     "@commitlint/cli": "^17.4.4",
