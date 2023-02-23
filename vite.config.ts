@@ -6,11 +6,11 @@ export default defineConfig({
     lib: {
       entry: path.resolve(__dirname, 'extension/index.ts'),
       fileName: () => 'index.js',
-      name: 'postcss-responsive',
+      name: 'berry-icons',
       formats: ['umd'],
     },
     rollupOptions: {
-      external: ['vscode'],
+      external: ['vscode', 'culori', 'svgo', 'path', 'fs/promises'],
     },
   },
 })

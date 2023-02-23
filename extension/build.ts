@@ -6,7 +6,6 @@ import type {
   Theme,
 } from '../typings/icon.d.js'
 
-import { nanoid } from 'nanoid/async'
 import fs from 'fs/promises'
 import path from 'path'
 
@@ -14,7 +13,7 @@ import { createHashedName } from './create-hashed-name.js'
 import { generateIcon } from './generate-icon.js'
 import { filesIcons } from '../data/files.js'
 import { baseIcons } from '../data/base.js'
-import { getDirname } from './get-dirname.js'
+import { makeId } from './make-id.js'
 
 interface IconDefinitions {
   [key: string]: {
@@ -42,8 +41,6 @@ interface IconSchema {
     [key: string]: string
   }
 }
-
-let __dirname = getDirname(import.meta.url)
 
 export let build = async (): Promise<void> => {
   let distDir = path.join(__dirname, '/../dist')
@@ -77,7 +74,7 @@ export let build = async (): Promise<void> => {
     }
   }
   let buildIcon = async (config: BuildOptions): Promise<void> => {
-    let hash = await nanoid(4)
+    let hash = makeId()
     iconDefinitions[config.id] = {
       iconPath: path.join(
         'icons',
@@ -130,3 +127,5 @@ export let build = async (): Promise<void> => {
   }
   await fs.writeFile(path.join(distDir, 'index.json'), JSON.stringify(schema))
 }
+
+build()

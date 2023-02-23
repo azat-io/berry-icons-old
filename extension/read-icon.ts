@@ -1,10 +1,6 @@
 import fs from 'fs/promises'
 import path from 'path'
 
-import { getDirname } from './get-dirname.js'
-
-let __dirname = getDirname(import.meta.url)
-
 export let readIcon = async ({
   id,
   type,

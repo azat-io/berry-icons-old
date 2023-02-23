@@ -2,9 +2,6 @@ import fs from 'fs/promises'
 import path from 'path'
 
 import { createHashedName } from './create-hashed-name.js'
-import { getDirname } from './get-dirname.js'
-
-let __dirname = getDirname(import.meta.url)
 
 export let createIcon = async (
   config: {
