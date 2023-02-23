@@ -10,7 +10,7 @@ export default defineConfig({
       formats: ['umd'],
     },
     rollupOptions: {
-      external: ['vscode', 'culori', 'svgo', 'path', 'fs/promises'],
+      external: ['vscode', 'colorjs.io', 'svgo', 'path', 'fs/promises'],
     },
   },
 })
