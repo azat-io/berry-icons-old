@@ -6,14 +6,14 @@ import { getDirname } from './get-dirname.js'
 let __dirname = getDirname(import.meta.url)
 
 export let readIcon = async ({
-  name,
+  id,
   type,
 }: {
-  name: string
+  id: string
   type: string
 }): Promise<string> => {
   let data = await fs.readFile(
-    path.join(__dirname, '/../icons', type, `${name}.svg`),
+    path.join(__dirname, '/../icons', type, `${id}.svg`),
   )
   return data.toString()
 }
