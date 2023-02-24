@@ -127,5 +127,3 @@ export let build = async (): Promise<void> => {
   }
   await fs.writeFile(path.join(distDir, 'index.json'), JSON.stringify(schema))
 }
-
-build()
