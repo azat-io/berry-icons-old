@@ -28,6 +28,14 @@
     "Other"
   ],
   "contributes": {
+    "iconThemes": [
+      {
+        "id": "berry-icons",
+        "label": "Berry Icons",
+        "path": "./dist/index.json",
+        "_watch": true
+      }
+    ],
     "configuration": {
       "title": "Berry Icons",
       "properties": {
