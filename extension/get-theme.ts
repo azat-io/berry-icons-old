@@ -15,6 +15,5 @@ export let getTheme = (): string[] => {
     github,
     gruvbox,
   }
-
   return themes[theme]
 }
