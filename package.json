@@ -31,7 +31,7 @@
     "configuration": {
       "title": "Berry Icons",
       "properties": {
-        "berryIcons.theme": {
+        "berry-icons.theme": {
           "default": "default",
           "enum": [
             "default",
