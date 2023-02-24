@@ -6,7 +6,7 @@ import { github } from '../theme/github.js'
 type Theme = 'default' | 'github' | 'gruvbox'
 
 export let getTheme = (): string[] => {
-  let theme = workspace.getConfiguration('berry-icons').get<Theme>('theme')
+  let theme = workspace.getConfiguration('berryIcons').get<Theme>('iconTheme')
   if (!theme) {
     return []
   }

@@ -6,6 +6,7 @@ import type {
   Theme,
 } from '../typings/icon.d.js'
 
+import { workspace } from 'vscode'
 import fs from 'fs/promises'
 import path from 'path'
 
@@ -114,6 +115,10 @@ export let build = async (): Promise<void> => {
     ...formatIconsValues(baseIcons, 'base').map(value => buildIcon(value)),
     ...formatIconsValues(filesIcons, 'files').map(value => buildIcon(value)),
   ])
+  let hidesExplorerArrows =
+    workspace
+      .getConfiguration('berryIcons')
+      .get<boolean>('hideExplorerArrows') ?? true
   let schema = {
     iconDefinitions,
     ...themedData.dark,
@@ -123,7 +128,7 @@ export let build = async (): Promise<void> => {
     file: 'file',
     folder: 'folder',
     folderExpanded: 'folder-open',
-    hidesExplorerArrows: true,
+    hidesExplorerArrows,
   }
   await fs.writeFile(path.join(distDir, 'index.json'), JSON.stringify(schema))
 }

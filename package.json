@@ -39,7 +39,7 @@
     "configuration": {
       "title": "Berry Icons",
       "properties": {
-        "berry-icons.theme": {
+        "berryIcons.iconTheme": {
           "default": "default",
           "enum": [
             "default",
@@ -51,6 +51,10 @@
             "GitHub",
             "Gruvbox"
           ]
+        },
+        "berryIcons.hideExplorerArrows": {
+          "type": "boolean",
+          "default": true
         }
       }
     }
