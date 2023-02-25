@@ -10,7 +10,7 @@ export default defineConfig({
       formats: ['umd'],
     },
     rollupOptions: {
-      external: ['vscode', 'svgo', 'path', 'fs/promises'],
+      external: ['vscode', 'svgo', 'path', 'fs/promises', 'os'],
     },
   },
 })

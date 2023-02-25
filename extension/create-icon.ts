@@ -8,23 +8,11 @@ export let createIcon = async (
     id: string
     hash: string
   },
+  directory: string,
   data: string,
 ): Promise<void> => {
-  let distDir = path.join(__dirname, '/../dist/icons')
-
-  await distDir.split(path.sep).reduce(async (accumulatorP, dir) => {
-    let accumulator = await accumulatorP
-    let currentDir = path.join(accumulator, path.sep, dir)
-    try {
-      await fs.stat(currentDir)
-    } catch (err) {
-      fs.mkdir(currentDir)
-    }
-    return currentDir
-  }, Promise.resolve(''))
-
   await fs.writeFile(
-    path.join(distDir, `${createHashedName(config)}.svg`),
+    path.join(directory, `${createHashedName(config)}.svg`),
     data,
   )
 }

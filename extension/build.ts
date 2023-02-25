@@ -9,6 +9,7 @@ import type {
 import { workspace } from 'vscode'
 import fs from 'fs/promises'
 import path from 'path'
+import os from 'os'
 
 import { createHashedName } from './create-hashed-name.js'
 import { generateIcon } from './generate-icon.js'
@@ -44,7 +45,9 @@ interface IconSchema {
 }
 
 export let build = async (): Promise<void> => {
+  let tmpDir = await fs.mkdtemp(path.join(os.tmpdir(), 'berry-icons-'))
   let distDir = path.join(__dirname, '/../dist')
+  let iconsDir = path.join(distDir, 'icons')
   let iconDefinitions: IconDefinitions = {}
   let createIconSchema = (): IconSchema => ({
     folderNames: {},
@@ -82,7 +85,7 @@ export let build = async (): Promise<void> => {
         `${createHashedName({ hash, ...config })}.svg`,
       ),
     }
-    generateIcon({ hash, ...config })
+    generateIcon({ hash, ...config }, tmpDir)
     updateThemedData(config)
   }
   let formatIconsValues = (
@@ -130,5 +133,14 @@ export let build = async (): Promise<void> => {
     folderExpanded: 'folder-open',
     hidesExplorerArrows,
   }
+
+  try {
+    await fs.stat(iconsDir)
+  } catch (error) {
+    fs.rm(iconsDir, { recursive: true })
+  }
+  await fs.mkdir(iconsDir, { recursive: true })
+  await fs.cp(tmpDir, iconsDir, { recursive: true })
+  await fs.rm(tmpDir, { recursive: true })
   await fs.writeFile(path.join(distDir, 'index.json'), JSON.stringify(schema))
 }
