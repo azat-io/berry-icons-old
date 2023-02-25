@@ -2,8 +2,8 @@ import type { ColorScheme } from '../typings/color-scheme.d.js'
 
 export let github: ColorScheme = {
   folderColors: {
-    primary: '#fabd2f',
-    secondary: '#d79921',
+    primary: '#a2d2fb',
+    secondary: '#77bdfb',
   },
   colors: [
     '#0d1117' /* black */,

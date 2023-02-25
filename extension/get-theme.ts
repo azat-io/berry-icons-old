@@ -16,6 +16,7 @@ export let getTheme = (): ColorScheme => {
       [key: string]: Theme | undefined
     } = {
       'Gruvbox Dark Hard': 'gruvbox',
+      'GitHub Dark': 'github',
     }
     preferredTheme = themes[userColorTheme] ?? 'inherit'
   }
