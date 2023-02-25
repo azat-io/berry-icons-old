@@ -40,14 +40,14 @@
       "title": "Berry Icons",
       "properties": {
         "berryIcons.iconTheme": {
-          "default": "default",
+          "default": "inherit",
           "enum": [
-            "default",
+            "inherit",
             "github",
             "gruvbox"
           ],
           "enumItemLabels": [
-            "Default",
+            "Inherit editor theme",
             "GitHub",
             "Gruvbox"
           ]

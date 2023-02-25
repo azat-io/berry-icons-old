@@ -1,14 +1,27 @@
 import type { ColorScheme } from '../typings/color-scheme.d.js'
+import type { Theme } from '../typings/theme.d.js'
 
 import { workspace } from 'vscode'
 
 import { gruvbox } from '../theme/gruvbox.js'
 import { github } from '../theme/github.js'
 
-type Theme = 'default' | 'github' | 'gruvbox'
-
 export let getTheme = (): ColorScheme => {
-  let theme = workspace.getConfiguration('berryIcons').get<Theme>('iconTheme')
+  let userColorTheme = workspace
+    .getConfiguration('workbench')
+    .get<string>('colorTheme')
+  let preferredTheme: Theme = 'inherit'
+  if (userColorTheme) {
+    let themes: {
+      [key: string]: Theme | undefined
+    } = {
+      'Gruvbox Dark Hard': 'gruvbox',
+    }
+    preferredTheme = themes[userColorTheme] ?? 'inherit'
+  }
+  let theme = workspace
+    .getConfiguration('berryIcons')
+    .get<Theme>('iconTheme', 'inherit')
   let defaultTheme: ColorScheme = {
     folderColors: {
       primary: '#5fb8d7',
@@ -16,13 +29,11 @@ export let getTheme = (): ColorScheme => {
     },
     colors: [],
   }
-  if (!theme) {
-    return defaultTheme
-  }
-  let themes = {
-    default: defaultTheme,
+  let themes: {
+    [key: string]: ColorScheme | undefined
+  } = {
     github,
     gruvbox,
   }
-  return themes[theme]
+  return themes[theme === 'inherit' ? preferredTheme : theme] ?? defaultTheme
 }
