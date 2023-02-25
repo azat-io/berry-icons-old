@@ -19,8 +19,8 @@
     "vscode": "^1.75.0"
   },
   "galleryBanner": {
-    "theme": "dark",
-    "color": "#1D2021"
+    "theme": "light",
+    "color": "#f0c2cb"
   },
   "icon": "assets/logo.png",
   "categories": [
