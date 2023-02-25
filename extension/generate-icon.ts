@@ -12,8 +12,22 @@ export let generateIcon = async (config: {
   hash: string
   type: IconType
 }): Promise<void> => {
+  let { id, type } = config
+  let isFolder = type === 'folders' || id === 'folder' || id === 'folder-open'
   let file = await readIcon(config)
   let optimizedFile = svgo.optimize(file).data
-  let newFile = updateColors(optimizedFile, getTheme())
+  let theme = getTheme()
+  let folderPrimary = '#5fb8d7'
+  let folderSecondary = '#4ca8c2'
+  let newFile = updateColors(
+    optimizedFile,
+    theme.colors,
+    isFolder
+      ? {
+          [folderPrimary]: theme.folderColors.primary,
+          [folderSecondary]: theme.folderColors.secondary,
+        }
+      : theme.colorOverrides?.[id],
+  )
   await createIcon(config, newFile)
 }
