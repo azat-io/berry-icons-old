@@ -17,6 +17,12 @@ export let filesIcons: FileIcon[] = [
     extensions: ['js', 'cjs', 'mjs', 'es'],
   },
   {
+    id: 'react',
+    name: 'React',
+    extensions: ['jsx', 'tsx'],
+    light: true,
+  },
+  {
     id: 'typescript',
     name: 'TypeScript',
     extensions: ['ts', 'cts', 'mts'],
