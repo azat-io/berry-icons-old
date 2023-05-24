@@ -16,7 +16,7 @@
   ],
   "engines": {
     "node": ">=19",
-    "vscode": "^1.75.0"
+    "vscode": ">=1"
   },
   "galleryBanner": {
     "theme": "light",
@@ -81,27 +81,27 @@
     "svgo": "^3.0.2"
   },
   "devDependencies": {
-    "@commitlint/cli": "^17.4.4",
-    "@commitlint/config-conventional": "^17.4.4",
+    "@commitlint/cli": "^17.6.3",
+    "@commitlint/config-conventional": "^17.6.3",
     "@logux/eslint-config": "^49.0.0",
-    "@types/node": "^18.14.6",
-    "@types/vscode": "^1.76.0",
+    "@types/node": "^20.2.3",
+    "@types/vscode": "^1.78.0",
     "@typescript-eslint/eslint-plugin": "^5.54.1",
     "@typescript-eslint/parser": "^5.54.1",
-    "@vitest/coverage-c8": "^0.29.2",
-    "bumpp": "^9.0.0",
+    "@vitest/coverage-c8": "^0.31.1",
+    "bumpp": "^9.1.0",
     "colorjs.io": "^0.4.3",
-    "eslint": "^8.35.0",
+    "eslint": "^8.41.0",
     "eslint-config-standard": "^17.0.0",
     "eslint-plugin-import": "^2.27.5",
     "eslint-plugin-n": "^15.6.1",
     "eslint-plugin-prefer-let": "^3.0.1",
     "eslint-plugin-promise": "^6.1.1",
-    "puppeteer": "^19.7.3",
+    "puppeteer": "^20.3.0",
     "simple-git-hooks": "^2.8.1",
     "standard-version": "^9.5.0",
-    "typescript": "^4.9.5",
-    "vite": "^4.1.4",
-    "vitest": "^0.29.2"
+    "typescript": "^5.0.4",
+    "vite": "^4.3.8",
+    "vitest": "^0.31.1"
   }
 }
