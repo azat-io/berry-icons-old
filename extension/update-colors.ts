@@ -6,8 +6,8 @@ export let updateColors = (
   colorOverrides: { [key: string]: string } = {},
 ): string => {
   let hexPattern =
-    /#([a-f0-9]{6}|[a-f0-9]{3})|black|green|silver|gray|olive|white|yellow|maroon|navy|red|blue|purple|teal|fuchsia|aqua/gi
-  return string.replace(
+    /#([\da-f]{6}|[\da-f]{3})|black|green|silver|gray|olive|white|yellow|maroon|navy|red|blue|purple|teal|fuchsia|aqua/gi
+  return string.replaceAll(
     hexPattern,
     matched =>
       colorOverrides[matched.toLowerCase()] ||

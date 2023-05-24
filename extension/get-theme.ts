@@ -10,7 +10,9 @@ export let getTheme = (): ColorScheme => {
   let userColorTheme = workspace
     .getConfiguration('workbench')
     .get<string>('colorTheme')
+
   let preferredTheme: Theme = 'inherit'
+
   if (userColorTheme) {
     let themes: {
       [key: string]: Theme | undefined
@@ -18,11 +20,14 @@ export let getTheme = (): ColorScheme => {
       'Gruvbox Dark Hard': 'gruvbox',
       'GitHub Dark': 'github',
     }
+
     preferredTheme = themes[userColorTheme] ?? 'inherit'
   }
+
   let theme = workspace
     .getConfiguration('berryIcons')
     .get<Theme>('iconTheme', 'inherit')
+
   let defaultTheme: ColorScheme = {
     folderColors: {
       primary: '#5fb8d7',
@@ -30,11 +35,13 @@ export let getTheme = (): ColorScheme => {
     },
     colors: [],
   }
+
   let themes: {
     [key: string]: ColorScheme | undefined
   } = {
     github,
     gruvbox,
   }
+
   return themes[theme === 'inherit' ? preferredTheme : theme] ?? defaultTheme
 }

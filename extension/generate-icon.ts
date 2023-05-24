@@ -22,6 +22,7 @@ export let generateIcon = async (
   let theme = getTheme()
   let folderPrimary = '#5fb8d7'
   let folderSecondary = '#4ca8c2'
+
   let newFile = updateColors(
     optimizedFile,
     theme.colors,
@@ -32,5 +33,6 @@ export let generateIcon = async (
         }
       : theme.colorOverrides?.[id],
   )
+
   await createIcon(config, directory, newFile)
 }

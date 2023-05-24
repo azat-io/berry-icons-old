@@ -1,4 +1,4 @@
-import { beforeAll, afterAll, expect, it, vi } from 'vitest'
+import { beforeAll, afterAll, describe, expect, it, vi } from 'vitest'
 
 import { updateColors } from '../extension/update-colors.js'
 
@@ -16,21 +16,23 @@ let updatedNpmIcon = `
   </svg>
 `
 
-beforeAll(() => {
-  vi.mock('../extension/find-nearest-color.js', () => ({
-    findNearestColor: (_colors: string[], color: string) => {
-      if (color === '#fb4934') {
-        return '#ffa500'
-      }
-      return '#eee'
-    },
-  }))
-})
+describe('update-color', () => {
+  beforeAll(() => {
+    vi.mock('../extension/find-nearest-color.js', () => ({
+      findNearestColor: (_colors: string[], color: string) => {
+        if (color === '#fb4934') {
+          return '#ffa500'
+        }
+        return '#eee'
+      },
+    }))
+  })
 
-afterAll(() => {
-  vi.clearAllMocks()
-})
+  afterAll(() => {
+    vi.clearAllMocks()
+  })
 
-it('converts colors', () => {
-  expect(updateColors(npmIcon, ['#ffa500', '#eee'])).toBe(updatedNpmIcon)
+  it('converts colors', () => {
+    expect(updateColors(npmIcon, ['#ffa500', '#eee'])).toBe(updatedNpmIcon)
+  })
 })

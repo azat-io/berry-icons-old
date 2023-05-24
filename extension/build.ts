@@ -49,16 +49,19 @@ export let build = async (): Promise<void> => {
   let distDir = path.join(__dirname, '/../dist')
   let iconsDir = path.join(distDir, 'icons')
   let iconDefinitions: IconDefinitions = {}
+
   let createIconSchema = (): IconSchema => ({
     folderNames: {},
     folderNamesExpanded: {},
     fileExtensions: {},
     fileNames: {},
   })
+
   let themedData: {
     dark: IconSchema
     light: IconSchema
   } = { dark: createIconSchema(), light: createIconSchema() }
+
   let updateThemedData = ({
     extensions,
     files,
@@ -66,28 +69,34 @@ export let build = async (): Promise<void> => {
     id,
   }: FileIcon & { theme: Theme }): void => {
     let data = themedData[theme]
+
     if (extensions) {
       extensions.forEach(extension => {
         data.fileExtensions[extension] = id
       })
     }
+
     if (files) {
       files.forEach(file => {
         data.fileNames[file] = id
       })
     }
   }
+
   let buildIcon = async (config: BuildOptions): Promise<void> => {
     let hash = makeId()
+
     iconDefinitions[config.id] = {
       iconPath: path.join(
         'icons',
         `${createHashedName({ hash, ...config })}.svg`,
       ),
     }
+
     generateIcon({ hash, ...config }, tmpDir)
     updateThemedData(config)
   }
+
   let formatIconsValues = (
     icons: (BaseIcon | FileIcon)[],
     type: IconType,
@@ -114,14 +123,17 @@ export let build = async (): Promise<void> => {
       ],
       [],
     )
+
   await Promise.all([
     ...formatIconsValues(baseIcons, 'base').map(value => buildIcon(value)),
     ...formatIconsValues(filesIcons, 'files').map(value => buildIcon(value)),
   ])
+
   let hidesExplorerArrows =
     workspace
       .getConfiguration('berryIcons')
       .get<boolean>('hideExplorerArrows') ?? true
+
   let schema = {
     iconDefinitions,
     ...themedData.dark,
@@ -139,6 +151,7 @@ export let build = async (): Promise<void> => {
   } catch (error) {
     fs.rm(iconsDir, { recursive: true })
   }
+
   await fs.mkdir(iconsDir, { recursive: true })
   await fs.cp(tmpDir, iconsDir, { recursive: true })
   await fs.rm(tmpDir, { recursive: true })
